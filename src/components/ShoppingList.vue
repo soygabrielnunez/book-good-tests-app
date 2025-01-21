@@ -10,6 +10,7 @@
     <ul>
       <li v-for="item in items" :key="item.id">
         {{ item.title }}
+        <button @click="removeItem(item)">Remove {{ item.title }}</button>
       </li>
     </ul>
   </div>
@@ -35,5 +36,10 @@ const itemTitle = ref('');
 const handleSubmit = () => {
   addItem({ id: Date.now(), title: itemTitle.value });
   itemTitle.value = '';
+};
+
+const removeItem = (item: Item) => {
+  items.value = items.value.filter((i) => i.id !== item.id);
+  updateStorage();
 };
 </script>
