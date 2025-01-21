@@ -20,8 +20,14 @@ export const makeShoppingList = ({ driver }: { driver: Driver }) => {
       await driver.findByLabelText('Item').type(itemTitle)
       await driver.findByRole('button', { name: 'Add item' }).click()
     },
+    async removeItem(itemTitle: Item['title']) {
+      await driver.findByRole('button', { name: `Remove ${itemTitle}` }).click()
+    },
     async expectItemToBeOnList(itemTitle: Item['title']) {
       await driver.findByText(itemTitle).shouldBeVisible()
+    },
+    async expectItemNotToBeOnList(itemTitle: Item['title']) {
+      await driver.queryByText(itemTitle).shouldNotBeVisible()
     },
   }
 }
