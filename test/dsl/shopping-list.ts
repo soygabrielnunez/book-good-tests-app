@@ -22,7 +22,7 @@ export const makeShoppingList = ({ driver }: { driver: Driver }) => {
     },
     async editItem(oldItemTitle: Item['title'], newItemTitle: Item['title']) {
       await driver.findByRole('button', { name: `Edit ${oldItemTitle}` }).click()
-      await driver.findByLabelText('Item').type(newItemTitle)
+      await driver.findByLabelText(oldItemTitle).type(newItemTitle)
       await driver.findByRole('button', { name: 'Save' }).click()
     },
     async removeItem(itemTitle: Item['title']) {
