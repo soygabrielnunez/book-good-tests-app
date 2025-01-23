@@ -6,16 +6,11 @@
       </label>
       <button>Add item</button>
     </form>
-
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        {{ item.title }}
-        <button @click="handleRemove(item)">Remove {{ item.title }}</button>
-      </li>
-    </ul>
+    <shopping-list-items :items="items" @remove="handleRemove" />
   </div>
 </template>
 <script setup lang="ts">
+import ShoppingListItems from './ShoppingListItems.vue';
 import type { Item } from 'src/entities/shopping-list';
 import { ref } from 'vue';
 
