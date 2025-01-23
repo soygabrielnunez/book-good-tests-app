@@ -2,6 +2,7 @@
   <ul>
     <li v-for="item in items" :key="item.id">
       {{ item.title }}
+      <button>Edit {{ item.title }}</button>
       <button @click="emits('remove', item)">Remove {{ item.title }}</button>
     </li>
   </ul>
