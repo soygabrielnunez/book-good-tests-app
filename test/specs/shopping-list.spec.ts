@@ -20,4 +20,5 @@ it('should be possible to edit items', async ({ driver }) => {
   await shoppingList.open()
   await shoppingList.editItem('Nuts', 'Bananas')
   await shoppingList.expectItemToBeOnList('Bananas')
+  await shoppingList.expectItemNotToBeOnList('Nuts')
 })
