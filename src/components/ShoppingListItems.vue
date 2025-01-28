@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="item in editableItems" :key="item.id">
+    <li v-for="item in editableItems" :key="item.id" class="flex w-full justify-between">
       <template v-if="item.editing">
         <label :for="item.title">{{ item.title }}</label>
         <input :id="item.title" v-model="item.title" />
@@ -8,8 +8,10 @@
       </template>
       <template v-else>
       {{ item.title }}
-      <button @click="item.editing = true">Edit {{ item.title }}</button>
-      <button @click="emits('remove', item)">Remove {{ item.title }}</button>
+      <div>
+        <button @click="handleEdit(item)">Edit {{ item.title }}</button>
+        <button @click="emits('remove', item)">Remove {{ item.title }}</button>
+      </div>
       </template>
     </li>
   </ul>
@@ -25,6 +27,13 @@ const props = defineProps<{
 type EditableItem = Item & { editing: boolean };
 
 const editableItems = ref<EditableItem[]>(props.items.map((item) => ({ ...item, editing: false })));
+
+const handleEdit = (item: EditableItem) => {
+  const itemIndex = editableItems.value?.findIndex((i) => i.id === item.id);
+  if (itemIndex !== undefined && itemIndex !== -1) {
+    editableItems.value[itemIndex].editing = true;
+  }
+};
 
 const handleSave = (item: EditableItem) => {
   const itemIndex = editableItems.value?.findIndex((i) => i.id === item.id);
