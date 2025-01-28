@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <label>Item
-        <input type="text" v-model="itemTitle" />
-      </label>
-      <button>Add item</button>
-    </form>
-    <shopping-list-items :items="items" @remove="handleRemove" />
+  <div class="pt-20 flex flex-col items-center gap-5">
+    <div class="w-[350px]">
+      <form @submit.prevent="handleSubmit" class="flex justify-between mb-4">
+        <label>Item
+          <input type="text" class="ml-2 p-2 outline rounded-md" v-model="itemTitle" />
+        </label>
+        <button class="p-2 rounded-md bg-blue-400">Add item</button>
+      </form>
+      <shopping-list-items :items="items" @remove="handleRemove" />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
