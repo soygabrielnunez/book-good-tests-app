@@ -1,7 +1,7 @@
 import { expect, it, screen, setup } from '../../test/utils'
 import ShoppingListItems from "./ShoppingListItems.vue";
 
-it('should emit a remove event when clicking an item', async () => {
+it('should emit a remove event when the user removes an item', async () => {
   const { emitted, user } = setup(ShoppingListItems, {
     renderOptions: {
       props: {
@@ -21,7 +21,7 @@ it('should emit a remove event when clicking an item', async () => {
   expect(removeEvent[0][0]).toEqual({ id: 1, title: 'Item 1' })
 })
 
-it('should emit an edit event when the user edits and save an item', async () => {
+it('should emit an edit event when the user edits and saves an item', async () => {
   const { emitted, user } = setup(ShoppingListItems, {
     renderOptions: {
       props: {
